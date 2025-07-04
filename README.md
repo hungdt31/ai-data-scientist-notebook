@@ -174,9 +174,7 @@ Không biết học sao nữa, follow theo ROADMAP của [https://roadmap.sh](ht
 3. **Cấu hình GitHub Pages:**
    - Vào Settings của repository
    - Chọn Pages từ sidebar
-   - Source: Deploy from a branch
-   - Branch: main
-   - Folder: /docs
+   - Source: GitHub Actions (thay vì Deploy from a branch)
    - Nhấn Save
 
 4. **Tự động deploy:**
@@ -231,9 +229,13 @@ docs/                   # Static site cho GitHub Pages
 
 2. **GitHub Pages Settings:**
    - Vào Settings → Pages
-   - Source: Deploy from a branch
-   - Branch: main
-   - Folder: /docs
+   - Source: GitHub Actions (không phải Deploy from a branch)
+   - Repository phải là public hoặc có GitHub Pro/Enterprise
+
+3. **Permission Issues:**
+   - Vào Settings → Actions → General
+   - Workflow permissions: Read and write permissions
+   - Allow GitHub Actions to create and approve pull requests: ✅
 
 3. **Common Issues:**
    - Đảm bảo repository là public hoặc có GitHub Pro
