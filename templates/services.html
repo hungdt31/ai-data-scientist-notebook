@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ page_title }}</title>
+        <link rel="stylesheet" href="/static/style.css" />
+    </head>
+    <body>
+        <!-- Navigation Menu -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <h3 class="nav-logo">AI & Data Science</h3>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="/"
+                           class="nav-link
+                                  {% if active_page == 'home' %}active{% endif %}">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/about"
+                           class="nav-link
+                                  {% if active_page == 'about' %}active{% endif %}">Về chúng tôi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/services"
+                           class="nav-link
+                                  {% if active_page == 'services' %}active{% endif %}">Dịch vụ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/contact"
+                           class="nav-link
+                                  {% if active_page == 'contact' %}active{% endif %}">Liên hệ</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>{{ page_title }}</h1>
+            <div class="services-section">
+                <h2>Dịch vụ của chúng tôi</h2>
+                <p>
+                    Chúng tôi cung cấp các dịch vụ chuyên nghiệp trong lĩnh vực AI và Data Science:
+                </p>
+                <div class="services-grid">
+                    {% for service in services %}
+                        <div class="service-card">
+                            <h3>{{ service }}</h3>
+                            <p>Dịch vụ chuyên nghiệp với chất lượng cao</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="why-choose-us">
+                    <h3>Tại sao chọn chúng tôi?</h3>
+                    <ul>
+                        <li>Đội ngũ chuyên gia có kinh nghiệm</li>
+                        <li>Giải pháp tùy chỉnh cho từng doanh nghiệp</li>
+                        <li>Hỗ trợ 24/7</li>
+                        <li>Giá cả cạnh tranh</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

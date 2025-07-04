@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ page_title }}</title>
+        <link rel="stylesheet" href="/static/style.css" />
+    </head>
+    <body>
+        <!-- Navigation Menu -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <h3 class="nav-logo">AI & Data Science</h3>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="/"
+                           class="nav-link
+                                  {% if active_page == 'home' %}active{% endif %}">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/about"
+                           class="nav-link
+                                  {% if active_page == 'about' %}active{% endif %}">Về chúng tôi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/services"
+                           class="nav-link
+                                  {% if active_page == 'services' %}active{% endif %}">Dịch vụ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/contact"
+                           class="nav-link
+                                  {% if active_page == 'contact' %}active{% endif %}">Liên hệ</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>{{ page_title }}</h1>
+            <div class="about-section">
+                <h2>Về chúng tôi</h2>
+                <p>
+                    Chúng tôi là một nhóm chuyên gia trong lĩnh vực AI và Data Science, cam kết mang đến những giải pháp tối
+                    ưu cho doanh nghiệp.
+                </p>
+                <div class="team-info">
+                    <h3>Đội ngũ của chúng tôi</h3>
+                    <ul>
+                        <li>Data Scientists có kinh nghiệm 5+ năm</li>
+                        <li>AI Engineers chuyên nghiệp</li>
+                        <li>Machine Learning Specialists</li>
+                        <li>Business Intelligence Analysts</li>
+                    </ul>
+                </div>
+                <div class="mission">
+                    <h3>Sứ mệnh</h3>
+                    <p>
+                        Biến đổi dữ liệu thành giá trị thực tế cho doanh nghiệp thông qua công nghệ AI tiên tiến.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

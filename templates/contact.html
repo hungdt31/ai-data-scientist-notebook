@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ page_title }}</title>
+        <link rel="stylesheet" href="/static/style.css" />
+    </head>
+    <body>
+        <!-- Navigation Menu -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <h3 class="nav-logo">AI & Data Science</h3>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="/"
+                           class="nav-link
+                                  {% if active_page == 'home' %}active{% endif %}">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/about"
+                           class="nav-link
+                                  {% if active_page == 'about' %}active{% endif %}">Về chúng tôi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/services"
+                           class="nav-link
+                                  {% if active_page == 'services' %}active{% endif %}">Dịch vụ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/contact"
+                           class="nav-link
+                                  {% if active_page == 'contact' %}active{% endif %}">Liên hệ</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>{{ page_title }}</h1>
+            <div class="contact-section">
+                <h2>Liên hệ với chúng tôi</h2>
+                <p>
+                    Hãy liên hệ với chúng tôi để được tư vấn miễn phí về các giải pháp AI và Data Science.
+                </p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p>{{ contact.email }}</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Số điện thoại</h3>
+                        <p>{{ contact.phone }}</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Địa chỉ</h3>
+                        <p>{{ contact.address }}</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Gửi tin nhắn</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Họ tên:</label>
+                            <input type="text" id="name" name="name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Tin nhắn:</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Gửi tin nhắn</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

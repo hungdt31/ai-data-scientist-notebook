@@ -1,0 +1,32 @@
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.djlint]
+profile = "jinja"
+indent = 4
+max_line_length = 80
+format_attribute_template_tags = true
+preserve_leading_space = false
+preserve_blank_lines = true
+blank_line_after_tag = "load,extends,include"
+blank_line_before_tag = "load,extends,include"
+close_void_tags = true
+format_js = true
+format_css = true

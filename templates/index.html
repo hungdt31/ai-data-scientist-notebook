@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ page_title }}</title>
+        <link rel="stylesheet" href="/static/style.css" />
+    </head>
+    <body>
+        <!-- Navigation Menu -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <h3 class="nav-logo">AI & Data Science</h3>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="/"
+                           class="nav-link
+                                  {% if active_page == 'home' %}active{% endif %}">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/about"
+                           class="nav-link
+                                  {% if active_page == 'about' %}active{% endif %}">Về chúng tôi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/services"
+                           class="nav-link
+                                  {% if active_page == 'services' %}active{% endif %}">Dịch vụ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/contact"
+                           class="nav-link
+                                  {% if active_page == 'contact' %}active{% endif %}">Liên hệ</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>Xin chào {{ user }}!</h1>
+            <p>Chào mừng bạn đến với trang {{ page_title }}</p>
+            <!-- Hiển thị thông tin người dùng từ dictionary -->
+            <div class="user-info">
+                <h2>Thông tin cá nhân:</h2>
+                <p>
+                    <strong>Tên:</strong> {{ user_data.name }}
+                </p>
+                <p>
+                    <strong>Chức vụ:</strong> {{ user_data.role }}
+                </p>
+                <p>
+                    <strong>Kinh nghiệm:</strong> {{ user_data.experience }}
+                </p>
+            </div>
+            <!-- Hiển thị danh sách công nghệ -->
+            <div class="tech-list">
+                <h2>Công nghệ sử dụng:</h2>
+                <ul>
+                    {% for tech in tech_list %}<li>{{ tech }}</li>{% endfor %}
+                </ul>
+            </div>
+            <!-- Sử dụng điều kiện trong template -->
+            {% if user_data.experience == "3 năm" %}
+                <p class="highlight">Bạn có kinh nghiệm trung cấp!</p>
+            {% endif %}
+            <!-- Hiển thị số lượng công nghệ -->
+            <p>
+                Tổng cộng có <strong>{{ tech_list|length }}</strong> công nghệ được sử dụng.
+            </p>
+        </div>
+    </body>
+</html>

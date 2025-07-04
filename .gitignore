@@ -148,3 +148,10 @@ datasets/
 # Logs
 logs/
 *.log
+
+# Keep docs directory for GitHub Pages
+!docs/
+
+# Project specific
+*.log
+.env
