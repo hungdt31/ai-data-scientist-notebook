@@ -2,13 +2,11 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [gh-pages, main]
+    branches: [main]
 
 # Set permissions for GitHub Pages
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 # Allow only one concurrent deployment
 concurrency:
@@ -16,9 +14,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,47 +30,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Format code
-        run: |
-          black .
-          isort .
-
-      - name: Lint code
-        run: |
-          flake8 . || echo "⚠️ Linting warnings found, but continuing deployment"
-
       - name: Export static site
         run: |
           python export_static.py
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: static-site
-          path: ./docs
-  
-  deploy:
-    needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: static-site
-          path: ./docs
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./docs
-
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ./docs
+          branch: gh-pages
+          clean: true
