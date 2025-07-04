@@ -216,3 +216,69 @@ docs/                   # Static site cho GitHub Pages
 - `deploy.ps1`: PowerShell script cho deploy
 - `.github/workflows/deploy.yml`: GitHub Actions workflow
 - `docs/`: Output directory cho GitHub Pages
+
+### Troubleshooting
+
+#### GitHub Actions Deployment Issues
+
+1. **Linting Errors:**
+   ```bash
+   # Sửa lỗi linting trước khi deploy
+   black .
+   isort .
+   flake8 .
+   ```
+
+2. **GitHub Pages Settings:**
+   - Vào Settings → Pages
+   - Source: Deploy from a branch
+   - Branch: main
+   - Folder: /docs
+
+3. **Common Issues:**
+   - Đảm bảo repository là public hoặc có GitHub Pro
+   - Kiểm tra file `.github/workflows/deploy.yml` có đúng syntax
+   - Thư mục `docs/` phải có trong repository
+
+#### Local Development Issues
+
+1. **PowerShell Execution Policy:**
+   ```powershell
+   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ```
+
+2. **Python Dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Static Site Generation:**
+   ```bash
+   python export_static.py
+   ```
+
+### Code Quality Checks
+
+- **Black**: Code formatting
+- **isort**: Import sorting  
+- **flake8**: Linting và style checks
+- **djLint**: HTML template formatting
+
+### Repository Structure for GitHub Pages
+
+```
+repository/
+├── docs/              # GitHub Pages source
+│   ├── index.html     # Generated static files
+│   ├── about.html
+│   ├── services.html
+│   ├── contact.html
+│   └── static/
+│       └── style.css
+├── .github/
+│   └── workflows/
+│       └── deploy.yml # GitHub Actions
+├── templates/         # Flask templates
+├── static/           # Flask static files
+└── app.py           # Flask application
+```

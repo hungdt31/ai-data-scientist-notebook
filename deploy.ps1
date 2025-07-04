@@ -13,6 +13,13 @@ Write-Host "Formatting code..." -ForegroundColor Yellow
 black .
 isort .
 
+# Check linting (but don't fail if there are warnings)
+Write-Host "Checking code quality..." -ForegroundColor Yellow
+flake8 .
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "⚠️ Linting warnings found, but continuing deployment" -ForegroundColor Yellow
+}
+
 # Export static files
 Write-Host "Exporting static site..." -ForegroundColor Yellow
 python export_static.py

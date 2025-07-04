@@ -4,7 +4,6 @@ Export Flask app to static files for GitHub Pages
 """
 import os
 import shutil
-from urllib.parse import urljoin
 
 from app import app
 

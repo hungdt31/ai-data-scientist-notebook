@@ -9,8 +9,8 @@ import sys
 TAB_WIDTH = 4  # Number of spaces for indentation
 
 
-def format_css(css_content):
-    """Format CSS content with proper indentation"""
+def normalize_css(css_content):
+    """Normalize CSS content"""
     # Remove extra whitespace and normalize
     css_content = re.sub(r"\s+", " ", css_content.strip())
 
@@ -23,47 +23,39 @@ def format_css(css_content):
     # Add newlines after semicolons (but not inside parentheses)
     css_content = re.sub(r";\s*(?![^()]*\))", ";\n", css_content)
 
-    # Split into lines and format
-    lines = css_content.split("\n")
-    formatted_lines = []
-    indent_level = 0
+    return css_content
 
-    for line in lines:
-        line = line.strip()
-        if not line:
-            if formatted_lines and formatted_lines[-1].strip():
-                formatted_lines.append("")
-            continue
 
-        # Handle comments
-        if line.startswith("/*"):
-            formatted_lines.append(line)
-            continue
+def format_line(line, indent_level):
+    """Format a single CSS line with proper indentation"""
+    line = line.strip()
+    if not line:
+        return "", indent_level
 
-        # Handle closing braces
-        if line.startswith("}"):
-            indent_level = max(0, indent_level - 1)
-            formatted_lines.append(" " * (TAB_WIDTH * indent_level) + line)
-            continue
+    # Handle comments
+    if line.startswith("/*"):
+        return line, indent_level
 
-        # Handle selectors (lines ending with {)
-        if line.endswith("{"):
-            formatted_lines.append(" " * (TAB_WIDTH * indent_level) + line)
-            indent_level += 1
-            continue
+    # Handle closing braces
+    if line.startswith("}"):
+        new_indent = max(0, indent_level - 1)
+        return " " * (TAB_WIDTH * new_indent) + line, new_indent
 
-        # Handle properties
-        if ":" in line and line.endswith(";"):
-            formatted_lines.append(" " * (TAB_WIDTH * indent_level) + line)
-            continue
+    # Handle selectors (lines ending with {)
+    if line.endswith("{"):
+        formatted_line = " " * (TAB_WIDTH * indent_level) + line
+        return formatted_line, indent_level + 1
 
-        # Handle other lines
-        formatted_lines.append(" " * (TAB_WIDTH * indent_level) + line)
+    # Handle properties and other lines
+    formatted_line = " " * (TAB_WIDTH * indent_level) + line
+    return formatted_line, indent_level
 
-    # Clean up extra blank lines
+
+def clean_blank_lines(lines):
+    """Remove excessive blank lines"""
     result = []
     prev_empty = False
-    for line in formatted_lines:
+    for line in lines:
         if line.strip() == "":
             if not prev_empty:
                 result.append("")
@@ -71,7 +63,26 @@ def format_css(css_content):
         else:
             result.append(line)
             prev_empty = False
+    return result
 
+
+def format_css(css_content):
+    """Format CSS content with proper indentation"""
+    # Normalize CSS
+    css_content = normalize_css(css_content)
+
+    # Split into lines and format
+    lines = css_content.split("\n")
+    formatted_lines = []
+    indent_level = 0
+
+    for line in lines:
+        formatted_line, indent_level = format_line(line, indent_level)
+        if formatted_line or formatted_line == "":
+            formatted_lines.append(formatted_line)
+
+    # Clean up extra blank lines
+    result = clean_blank_lines(formatted_lines)
     return "\n".join(result)
 
 
