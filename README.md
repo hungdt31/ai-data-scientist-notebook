@@ -195,11 +195,15 @@ Không biết học sao nữa, follow theo ROADMAP của [https://roadmap.sh](ht
 ### Deploy thủ công với PowerShell
 
 ```powershell
-# Chạy script deploy tự động
-.\deploy.ps1
+# Phương pháp 1: Deploy đơn giản (Khuyến nghị)
+# Chỉ push lên main branch, GitHub Actions sẽ tự động deploy
+.\deploy-simple.ps1
 
-# Hoặc deploy thủ công lên gh-pages branch
+# Phương pháp 2: Deploy thủ công lên gh-pages branch
 .\deploy-manual.ps1
+
+# Phương pháp 3: Deploy với commit và push tự động
+.\deploy.ps1
 ```
 
 ### Export static site
@@ -260,7 +264,12 @@ docs/                   # Static site cho GitHub Pages
 5. **Workflow Failed:**
    - Kiểm tra tab Actions trong repository
    - Xem log chi tiết của workflow
-   - Thử sử dụng `.github/workflows/deploy-simple.yml` thay vì `deploy.yml`
+   - Thử sử dụng script manual: `.\deploy-simple.ps1`
+
+6. **Deploy Scripts:**
+   - `deploy-simple.ps1`: Chỉ push lên main, GitHub Actions tự deploy
+   - `deploy-manual.ps1`: Deploy trực tiếp lên gh-pages branch
+   - `deploy.ps1`: Full deployment với formatting và checks
 
 3. **Common Issues:**
    - Đảm bảo repository là public hoặc có GitHub Pro
