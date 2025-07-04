@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{ page_title }}</title>
         <link rel="stylesheet" href="/static/style.css" />
     </head>
@@ -9,7 +11,8 @@
         <nav class="navbar">
             <div class="nav-container">
                 <h3 class="nav-logo">AI & Data Science</h3>
-                <ul class="nav-menu">
+                <button class="nav-toggle" id="nav-toggle">☰</button>
+                <ul class="nav-menu" id="nav-menu">
                     <li class="nav-item">
                         <a href="/"
                            class="nav-link
@@ -33,6 +36,8 @@
                 </ul>
             </div>
         </nav>
+        <!-- Mobile Menu Overlay -->
+        <div class="nav-overlay" id="nav-overlay"></div>
         <!-- Main Content -->
         <div class="main-content">
             <h1>{{ page_title }}</h1>
@@ -75,5 +80,44 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Mobile Menu Toggle Script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const navToggle = document.getElementById('nav-toggle');
+                const navMenu = document.getElementById('nav-menu');
+                const navOverlay = document.getElementById('nav-overlay');
+                
+                function toggleMenu() {
+                    navMenu.classList.toggle('active');
+                    navOverlay.classList.toggle('active');
+                    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+                }
+                
+                function closeMenu() {
+                    navMenu.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+                
+                navToggle.addEventListener('click', toggleMenu);
+                
+                // Close menu when clicking on overlay
+                navOverlay.addEventListener('click', closeMenu);
+                
+                // Close menu when clicking on a link
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+                
+                // Close menu when pressing Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                        closeMenu();
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

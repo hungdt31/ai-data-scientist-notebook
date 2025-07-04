@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
     # Định nghĩa các biến để truyền vào template
     title = "Trang chủ AI & Data Science"
-    username = "Nguyễn Văn C"
+    username = "Nguyễn Văn A"
     technologies = ["Python", "Flask", "Machine Learning", "Data Science"]
     user_info = {
         "name": "Nguyễn Văn A",
