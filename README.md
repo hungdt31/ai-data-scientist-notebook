@@ -172,10 +172,20 @@ Không biết học sao nữa, follow theo ROADMAP của [https://roadmap.sh](ht
    ```
 
 3. **Cấu hình GitHub Pages:**
+   
+   **Phương pháp 1: Sử dụng GitHub Actions (Khuyến nghị)**
    - Vào Settings của repository
    - Chọn Pages từ sidebar
-   - Source: GitHub Actions (thay vì Deploy from a branch)
-   - Nhấn Save
+   - Source: GitHub Actions
+   - Sử dụng workflow `.github/workflows/deploy.yml`
+   
+   **Phương pháp 2: Deploy từ branch (Đơn giản hơn)**
+   - Vào Settings của repository
+   - Chọn Pages từ sidebar  
+   - Source: Deploy from a branch
+   - Branch: gh-pages
+   - Folder: / (root)
+   - Sử dụng workflow `.github/workflows/deploy-simple.yml`
 
 4. **Tự động deploy:**
    - Mỗi khi push code lên main branch
@@ -185,8 +195,11 @@ Không biết học sao nữa, follow theo ROADMAP của [https://roadmap.sh](ht
 ### Deploy thủ công với PowerShell
 
 ```powershell
-# Chạy script deploy
+# Chạy script deploy tự động
 .\deploy.ps1
+
+# Hoặc deploy thủ công lên gh-pages branch
+.\deploy-manual.ps1
 ```
 
 ### Export static site
@@ -236,6 +249,18 @@ docs/                   # Static site cho GitHub Pages
    - Vào Settings → Actions → General
    - Workflow permissions: Read and write permissions
    - Allow GitHub Actions to create and approve pull requests: ✅
+
+4. **GitHub Pages Not Enabled:**
+   - Vào Settings → Pages
+   - Nếu không thấy Pages option, kiểm tra:
+     - Repository phải là public (hoặc có GitHub Pro)
+     - Vào Settings → Features → Issues (phải được enable)
+   - Thử tạo branch gh-pages thủ công và push một file index.html
+
+5. **Workflow Failed:**
+   - Kiểm tra tab Actions trong repository
+   - Xem log chi tiết của workflow
+   - Thử sử dụng `.github/workflows/deploy-simple.yml` thay vì `deploy.yml`
 
 3. **Common Issues:**
    - Đảm bảo repository là public hoặc có GitHub Pro
