@@ -288,6 +288,12 @@ docs/                   # Static site cho GitHub Pages
    pip install -r requirements.txt
    ```
 
+   Hoặc cài đặt với conda:
+   
+   ```angular2html
+   conda env create -f environment.yml
+   ```
+   
 3. **Static Site Generation:**
    ```bash
    python export_static.py
