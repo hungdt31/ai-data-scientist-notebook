@@ -1,4 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
+import markdown
+import os
+import re
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -64,6 +68,88 @@ def contact():
         page_title="Liên hệ",
         contact=contact_info,
         active_page="contact",
+    )
+
+
+def parse_markdown_metadata(content):
+    """Phân tích metadata từ nội dung markdown."""
+    metadata = {}
+    match = re.match(r'---\s+(.*?)\s+---\s+(.*)', content, re.DOTALL)
+    if match:
+        metadata_text = match.group(1)
+        content = match.group(2)
+        
+        for line in metadata_text.split('\n'):
+            if ':' in line:
+                key, value = line.split(':', 1)
+                metadata[key.strip()] = value.strip()
+                
+    return metadata, content
+
+
+@app.route("/blog")
+def blog_list():
+    """Hiển thị danh sách bài viết blog từ các file markdown."""
+    posts = []
+    
+    # Lấy tất cả file markdown trong thư mục posts
+    for filename in os.listdir('posts'):
+        if filename.endswith('.md'):
+            file_path = os.path.join('posts', filename)
+            
+            with open(file_path, 'r', encoding='utf-8') as file:
+                content = file.read()
+                
+            # Phân tích metadata và nội dung
+            metadata, _ = parse_markdown_metadata(content)
+            
+            # Tạo slug từ tên file
+            slug = filename[:-3]  # Bỏ phần .md
+            
+            posts.append({
+                'slug': slug,
+                'title': metadata.get('title', 'Không có tiêu đề'),
+                'date': metadata.get('date', ''),
+                'summary': metadata.get('summary', ''),
+                'author': metadata.get('author', '')
+            })
+    
+    # Sắp xếp bài viết theo ngày (mới nhất trước)
+    posts.sort(key=lambda x: x.get('date', ''), reverse=True)
+    
+    return render_template(
+        "blog_list.html",
+        page_title="Blog",
+        posts=posts,
+        active_page="blog",
+    )
+
+
+@app.route("/blog/<slug>")
+def blog_post(slug):
+    """Hiển thị bài viết blog cụ thể từ file markdown."""
+    file_path = os.path.join('posts', f"{slug}.md")
+    
+    if not os.path.exists(file_path):
+        abort(404)
+        
+    with open(file_path, 'r', encoding='utf-8') as file:
+        content = file.read()
+        
+    # Phân tích metadata và nội dung
+    metadata, content = parse_markdown_metadata(content)
+    
+    # Chuyển đổi markdown thành HTML
+    html_content = markdown.markdown(content, extensions=['fenced_code', 'codehilite'])
+    
+    return render_template(
+        "blog_post.html",
+        page_title=metadata.get('title', 'Blog Post'),
+        post_title=metadata.get('title', 'Không có tiêu đề'),
+        post_date=metadata.get('date', ''),
+        post_author=metadata.get('author', ''),
+        post_content=html_content,
+        active_page="blog",
     )
 
 

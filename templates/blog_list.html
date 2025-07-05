@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }} | AI & Data Science{% endblock %}
+
+{% block content %}
+<div class="blog-container">
+    <h1 class="blog-header">Blog AI & Data Science</h1>
+    <p class="blog-intro">Tổng hợp các bài viết về AI, Data Science và công nghệ</p>
+
+    <div class="blog-grid">
+        {% for post in posts %}
+        <div class="blog-card">
+            <div class="blog-card-body">
+                <h3 class="blog-card-title">{{ post.title }}</h3>
+                <div class="blog-card-meta">
+                    {% if post.date %}{{ post.date }}{% endif %}
+                    {% if post.author %} | {{ post.author }}{% endif %}
+                </div>
+                <p class="blog-card-summary">{{ post.summary }}</p>
+                <a href="{{ url_for('blog_post', slug=post.slug) }}" class="btn btn-primary">Đọc tiếp</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if not posts %}
+    <div class="blog-empty">
+        <div class="alert alert-info">
+            Chưa có bài viết nào. Hãy quay lại sau.
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<style>
+    .blog-container {
+        max-width: 1200px;
+    }
+    
+    .blog-header {
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+    
+    .blog-intro {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+    
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 20px;
+    }
+    
+    .blog-card {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+        background-color: #fff;
+        height: 100%;
+    }
+    
+    .blog-card-body {
+        padding: 20px;
+    }
+    
+    .blog-card-title {
+        margin-bottom: 0.5rem;
+        text-align: left;
+    }
+    
+    .blog-card-meta {
+        color: #6c757d;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        text-align: left;
+    }
+    
+    .blog-card-summary {
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+    
+    .blog-empty {
+        margin-top: 2rem;
+        text-align: left;
+    }
+    
+    @media (max-width: 768px) {
+        .blog-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %} 
