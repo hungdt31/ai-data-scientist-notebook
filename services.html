@@ -6,38 +6,53 @@
         <title>Dịch vụ | AI & Data Science</title>
         <link rel="icon" href="./static/images/logo.png" type="image/x-icon">
         <link rel="stylesheet" href="./static/style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     </head>
     <body>
         <!-- Navigation Menu -->
-        <nav class="navbar">
+        <nav class="navbar" id="main-navbar">
             <div class="nav-container">
-                <h3 class="nav-logo">AI & Data Science</h3>
-                <button class="nav-toggle" id="nav-toggle">☰</button>
+                <a href="./index.html" class="nav-logo">
+                    <i class="fas fa-brain"></i>&nbsp; AI & Data Science
+                </a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <ul class="nav-menu" id="nav-menu">
                     <li class="nav-item">
                         <a href="./index.html"
                            class="nav-link
-                                  ">Trang chủ</a>
+                                  ">
+                            <i class="fas fa-home"></i>&nbsp; Trang chủ
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a href="./about.html"
                            class="nav-link
-                                  ">Về chúng tôi</a>
+                                  ">
+                            <i class="fas fa-info-circle"></i>&nbsp; About us
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a href="./services.html"
                            class="nav-link
-                                  active">Dịch vụ</a>
+                                  active">
+                            <i class="fas fa-cogs"></i>&nbsp; Dịch vụ
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a href="./blog/index.html"
                            class="nav-link
-                                  ">Blog</a>
+                                  ">
+                            <i class="fas fa-newspaper"></i>&nbsp; Blog
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a href="./contact.html"
                            class="nav-link
-                                  ">Liên hệ</a>
+                                  ">
+                            <i class="fas fa-envelope"></i>&nbsp; Liên hệ
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -49,11 +64,10 @@
         <!-- Main Content -->
         <div class="main-content">
             
-<h1>Dịch vụ</h1>
 <div class="services-section">
-    <h2>Dịch vụ của chúng tôi</h2>
-    <p>
-        Chúng tôi cung cấp các dịch vụ chuyên nghiệp trong lĩnh vực AI và Data Science:
+    <h1 style="text-align: center;">Dịch vụ</h1>
+    <p style="text-align: center; font-style: italic; font-size: 1.2rem;">
+        Chúng tôi cung cấp các dịch vụ chuyên nghiệp trong lĩnh vực AI và Data Science
     </p>
     <div class="services-grid">
         
@@ -96,22 +110,35 @@
 
         </div>
         
-        <!-- Mobile Menu Toggle Script -->
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <p>&copy; 2025 AI & Data Science. Đã đăng ký bản quyền.</p>
+            </div>
+        </footer>
+        
+        <!-- Scripts -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const navToggle = document.getElementById('nav-toggle');
                 const navMenu = document.getElementById('nav-menu');
                 const navOverlay = document.getElementById('nav-overlay');
+                const navbar = document.getElementById('main-navbar');
                 
+                // Handle menu toggle
                 function toggleMenu() {
                     navMenu.classList.toggle('active');
                     navOverlay.classList.toggle('active');
+                    navToggle.innerHTML = navMenu.classList.contains('active') 
+                        ? '<i class="fas fa-times"></i>' 
+                        : '<i class="fas fa-bars"></i>';
                     document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
                 }
                 
                 function closeMenu() {
                     navMenu.classList.remove('active');
                     navOverlay.classList.remove('active');
+                    navToggle.innerHTML = '<i class="fas fa-bars"></i>';
                     document.body.style.overflow = '';
                 }
                 
@@ -130,6 +157,15 @@
                 document.addEventListener('keydown', function(e) {
                     if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                         closeMenu();
+                    }
+                });
+                
+                // Handle navbar style change on scroll
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
                     }
                 });
             });
