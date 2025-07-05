@@ -3,11 +3,10 @@
 {% block title %}{{ page_title }} | AI & Data Science{% endblock %}
 
 {% block content %}
-<h1>{{ page_title }}</h1>
 <div class="services-section">
-    <h2>Dịch vụ của chúng tôi</h2>
-    <p>
-        Chúng tôi cung cấp các dịch vụ chuyên nghiệp trong lĩnh vực AI và Data Science:
+    <h1 style="text-align: center;">{{ page_title }}</h1>
+    <p style="text-align: center; font-style: italic; font-size: 1.2rem;">
+        Chúng tôi cung cấp các dịch vụ chuyên nghiệp trong lĩnh vực AI và Data Science
     </p>
     <div class="services-grid">
         {% for service in services %}

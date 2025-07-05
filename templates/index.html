@@ -3,8 +3,11 @@
 {% block title %}{{ page_title }}{% endblock %}
 
 {% block content %}
-<h1>Xin chào {{ user }}!</h1>
-<p>Chào mừng bạn đến với trang {{ page_title }}</p>
+<div style="text-align: center;">
+    <h1>Xin chào {{ user }}!</h1>
+    <p style="font-size: 1.2rem; font-style: italic;">Chào mừng bạn đến với trang {{ page_title }}</p>
+</div>
+
 <!-- Hiển thị thông tin người dùng từ dictionary -->
 <div class="user-info">
     <h2>Thông tin cá nhân:</h2>

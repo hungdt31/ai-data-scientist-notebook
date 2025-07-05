@@ -34,7 +34,7 @@ def home():
 def about():
     return render_template(
         "about.html",
-        page_title="Về chúng tôi",
+        page_title="About us",
         active_page="about",
     )
 
