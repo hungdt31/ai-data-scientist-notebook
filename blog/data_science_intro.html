@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Giới thiệu về Data Science | AI & Data Science</title>
+        <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="../static/style.css" />
+    </head>
+    <body>
+        <!-- Navigation Menu -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <h3 class="nav-logo">AI & Data Science</h3>
+                <button class="nav-toggle" id="nav-toggle">☰</button>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item">
+                        <a href="../index.html"
+                           class="nav-link
+                                  ">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../about.html"
+                           class="nav-link
+                                  ">Về chúng tôi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../services.html"
+                           class="nav-link
+                                  ">Dịch vụ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../blog/index.html"
+                           class="nav-link
+                                  active">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../contact.html"
+                           class="nav-link
+                                  ">Liên hệ</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu Overlay -->
+        <div class="nav-overlay" id="nav-overlay"></div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            
+<div class="blog-container">
+    <div class="blog-inner">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../blog/index.html">Blog</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Giới thiệu về Data Science</li>
+            </ol>
+        </nav>
+
+        <article class="blog-post">
+            <header>
+                <h1 class="blog-post-title">Giới thiệu về Data Science</h1>
+                <div class="blog-post-meta mb-4">
+                    
+                    <span class="date">2025-07-06</span>
+                    
+                    
+                    <span class="author"> | Tác giả: Nguyễn Văn A</span>
+                    
+                </div>
+            </header>
+
+            <div class="blog-post-content">
+                <p>Khoa học Dữ liệu (Data Science) là lĩnh vực liên ngành kết hợp các kỹ năng trong toán học, thống kê, lập trình và kiến thức chuyên ngành để trích xuất thông tin và hiểu biết từ dữ liệu.</p>
+<p><img alt="Mô hình Khoa học Dữ liệu" src="../static/images/posts/ds.jpeg" /></p>
+<h2>Quy trình Data Science</h2>
+<ol>
+<li><strong>Thu thập dữ liệu</strong>: Lấy dữ liệu từ nhiều nguồn khác nhau</li>
+<li><strong>Tiền xử lý dữ liệu</strong>: Làm sạch và chuẩn bị dữ liệu</li>
+<li><strong>Phân tích dữ liệu</strong>: Tìm kiếm mẫu và xu hướng</li>
+<li><strong>Xây dựng mô hình</strong>: Phát triển các mô hình dự đoán</li>
+<li><strong>Trực quan hóa dữ liệu</strong>: Biểu diễn kết quả bằng hình ảnh</li>
+<li><strong>Triển khai</strong>: Đưa mô hình vào ứng dụng thực tế</li>
+</ol>
+<!-- ![Quy trình Data Science](../static/images/posts/data_science_process.png) -->
+
+<h2>Ví dụ về Trực quan hóa Dữ liệu</h2>
+<pre class="codehilite"><code class="language-python">import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Tạo dữ liệu mẫu
+x = [1, 2, 3, 4, 5]
+y = [2, 4, 6, 8, 10]
+
+# Vẽ biểu đồ
+plt.figure(figsize=(8, 5))
+plt.plot(x, y, 'bo-')
+plt.title('Biểu đồ mẫu')
+plt.xlabel('Trục X')
+plt.ylabel('Trục Y')
+plt.grid(True)
+plt.show()
+</code></pre>
+
+<!-- ![Ví dụ biểu đồ dữ liệu](../static/images/posts/data_visualization.png) -->
+
+<h2>Công cụ phổ biến trong Data Science</h2>
+<ul>
+<li>Python (Pandas, NumPy, Scikit-learn)</li>
+<li>R (ggplot2, dplyr)</li>
+<li>SQL</li>
+<li>Tableau</li>
+<li>Power BI</li>
+</ul>
+<p><img alt="Công cụ Data Science" src="../static/images/posts/data_science_tools.png" /> </p>
+            </div>
+        </article>
+
+        <div class="blog-nav">
+            <a href="../blog/index.html" class="btn btn-secondary">&larr; Quay lại danh sách bài viết</a>
+        </div>
+    </div>
+</div>
+
+        </div>
+        
+        <!-- Mobile Menu Toggle Script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const navToggle = document.getElementById('nav-toggle');
+                const navMenu = document.getElementById('nav-menu');
+                const navOverlay = document.getElementById('nav-overlay');
+                
+                function toggleMenu() {
+                    navMenu.classList.toggle('active');
+                    navOverlay.classList.toggle('active');
+                    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+                }
+                
+                function closeMenu() {
+                    navMenu.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+                
+                navToggle.addEventListener('click', toggleMenu);
+                
+                // Close menu when clicking on overlay
+                navOverlay.addEventListener('click', closeMenu);
+                
+                // Close menu when clicking on a link
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+                
+                // Close menu when pressing Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                        closeMenu();
+                    }
+                });
+            });
+        </script>
+        
+        
+<style>
+    .blog-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .blog-inner {
+        padding: 0px 10px;
+        max-width: 800px;
+    }
+    
+    .blog-post {
+        margin-bottom: 3rem;
+    }
+    
+    .blog-post-title {
+        margin-bottom: 0.5rem;
+        text-align: left;
+    }
+    
+    .blog-post-meta {
+        color: #6c757d;
+        margin-bottom: 1.5rem;
+        text-align: left;
+    }
+    
+    .blog-post-content {
+        line-height: 1.8;
+        text-align: left;
+    }
+    
+    .blog-post-content h2,
+    .blog-post-content h3,
+    .blog-post-content h4 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+    
+    .blog-post-content img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .blog-post-content pre {
+        padding: 1rem;
+        background-color: #f8f9fa;
+        border-radius: 0.25rem;
+        overflow-x: auto;
+        text-align: left;
+    }
+    
+    .blog-post-content code {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 0.875em;
+    }
+    
+    .blog-nav {
+        margin-top: 2rem;
+        text-align: left;
+    }
+</style>
+
+    </body>
+</html> 

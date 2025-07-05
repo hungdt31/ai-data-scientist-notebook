@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Về chúng tôi | AI & Data Science</title>
-        <link rel="icon" href="./static/images/logo.png" type="image/x-icon">
-        <link rel="stylesheet" href="./static/style.css" />
+        <title>Blog | AI & Data Science</title>
+        <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="../static/style.css" />
     </head>
     <body>
         <!-- Navigation Menu -->
@@ -15,27 +15,27 @@
                 <button class="nav-toggle" id="nav-toggle">☰</button>
                 <ul class="nav-menu" id="nav-menu">
                     <li class="nav-item">
-                        <a href="./index.html"
+                        <a href="../index.html"
                            class="nav-link
                                   ">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./about.html"
+                        <a href="../about.html"
                            class="nav-link
-                                  active">Về chúng tôi</a>
+                                  ">Về chúng tôi</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./services.html"
+                        <a href="../services.html"
                            class="nav-link
                                   ">Dịch vụ</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./blog/index.html"
+                        <a href="../blog/index.html"
                            class="nav-link
-                                  ">Blog</a>
+                                  active">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./contact.html"
+                        <a href="../contact.html"
                            class="nav-link
                                   ">Liên hệ</a>
                     </li>
@@ -49,28 +49,39 @@
         <!-- Main Content -->
         <div class="main-content">
             
-<h1>Về chúng tôi</h1>
-<div class="about-section">
-    <h2>Về chúng tôi</h2>
-    <p>
-        Chúng tôi là một nhóm chuyên gia trong lĩnh vực AI và Data Science, cam kết mang đến những giải pháp tối
-        ưu cho doanh nghiệp.
-    </p>
-    <div class="team-info">
-        <h3>Đội ngũ của chúng tôi</h3>
-        <ul>
-            <li>Data Scientists có kinh nghiệm 5+ năm</li>
-            <li>AI Engineers chuyên nghiệp</li>
-            <li>Machine Learning Specialists</li>
-            <li>Business Intelligence Analysts</li>
-        </ul>
+<div class="blog-container">
+    <h1 class="blog-header">Blog AI & Data Science</h1>
+    <p class="blog-intro">Tổng hợp các bài viết về AI, Data Science và công nghệ</p>
+
+    <div class="blog-grid">
+        
+        <div class="blog-card">
+            <div class="blog-card-body">
+                <h3 class="blog-card-title">Giới thiệu về Data Science</h3>
+                <div class="blog-card-meta">
+                    2025-07-06
+                     | Nguyễn Văn A
+                </div>
+                <p class="blog-card-summary">Tổng quan về lĩnh vực Khoa học Dữ liệu</p>
+                <a href="./data_science_intro.html" class="btn btn-primary">Đọc tiếp</a>
+            </div>
+        </div>
+        
+        <div class="blog-card">
+            <div class="blog-card-body">
+                <h3 class="blog-card-title">Chào mừng đến với Blog AI &amp; Data Science</h3>
+                <div class="blog-card-meta">
+                    2025-07-05
+                     | Nguyễn Văn A
+                </div>
+                <p class="blog-card-summary">Bài viết giới thiệu về blog AI &amp; Data Science</p>
+                <a href="./hello_world.html" class="btn btn-primary">Đọc tiếp</a>
+            </div>
+        </div>
+        
     </div>
-    <div class="mission">
-        <h3>Sứ mệnh</h3>
-        <p>
-            Biến đổi dữ liệu thành giá trị thực tế cho doanh nghiệp thông qua công nghệ AI tiên tiến.
-        </p>
-    </div>
+
+    
 </div>
 
         </div>
@@ -115,5 +126,68 @@
         </script>
         
         
+<style>
+    .blog-container {
+        max-width: 1200px;
+    }
+    
+    .blog-header {
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+    
+    .blog-intro {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+    
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 20px;
+    }
+    
+    .blog-card {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+        background-color: #fff;
+        height: 100%;
+    }
+    
+    .blog-card-body {
+        padding: 20px;
+    }
+    
+    .blog-card-title {
+        margin-bottom: 0.5rem;
+        text-align: left;
+    }
+    
+    .blog-card-meta {
+        color: #6c757d;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        text-align: left;
+    }
+    
+    .blog-card-summary {
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+    
+    .blog-empty {
+        margin-top: 2rem;
+        text-align: left;
+    }
+    
+    @media (max-width: 768px) {
+        .blog-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
     </body>
 </html> 
